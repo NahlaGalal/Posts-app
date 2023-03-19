@@ -9,3 +9,9 @@
     @apply font-inter
   }
 }
+
+@layer components {
+  .custom-container {
+    @apply px-[10%]
+  }
+}
