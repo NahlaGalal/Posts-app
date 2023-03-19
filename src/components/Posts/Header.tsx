@@ -44,7 +44,7 @@ const PostsHeader: React.FC = () => {
       </div>
 
       {/* Span for background only */}
-      <span className="absolute left-0 w-screen" aria-hidden>
+      <span className="absolute left-0 w-full" aria-hidden>
         <img src={bgPattern} alt="background pattern" className="w-full" />
       </span>
     </header>
