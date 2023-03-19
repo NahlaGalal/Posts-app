@@ -1,9 +1,10 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
+import bgPattern from "/bg-pattern.svg";
 
 const PostsHeader: React.FC = () => {
   return (
-    <header className="custom-container bg-lightViolet py-24">
+    <header className="custom-container bg-lightViolet py-24 relative">
       <p
         data-cy="blog-tag"
         className="[ text-sm font-medium] 
@@ -41,6 +42,11 @@ const PostsHeader: React.FC = () => {
           <FiSearch className="text-greyColor w-5 h-5" />
         </span>
       </div>
+
+      {/* Span for background only */}
+      <span className="absolute left-0 w-screen" aria-hidden>
+        <img src={bgPattern} alt="background pattern" className="w-full" />
+      </span>
     </header>
   );
 };
