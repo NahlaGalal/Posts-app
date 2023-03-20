@@ -1,5 +1,9 @@
 /// <reference types="cypress" />
 
+const commenterName = "Test";
+const commenterEmail = "test@test.com";
+const commentBody = "Test Body";
+
 describe("Render post details page successfully", () => {
   before(() => {
     cy.fixture("postDetails")
@@ -25,12 +29,11 @@ describe("Render post details page successfully", () => {
       "POST",
       "https://jsonplaceholder.typicode.com/posts/1/comments",
       {
-        status: 200,
-        data: {
-          body: "TestBody",
-          email: "test@test.com",
+        body: {
+          body: commentBody,
+          email: commenterEmail,
           id: 501,
-          name: "Test",
+          name: commenterName,
           postId: "1",
         },
       }
@@ -116,16 +119,16 @@ describe("Render post details page successfully", () => {
     cy.get("[data-cy='input-name']").focus();
 
     // Add inputs data
-    cy.get("[data-cy='input-name']").type("Test");
-    cy.get("[data-cy='input-email']").type("test@test.com");
-    cy.get("[data-cy='comment-textarea']").type("TestBody");
+    cy.get("[data-cy='input-name']").type(commenterName);
+    cy.get("[data-cy='input-email']").type(commenterEmail);
+    cy.get("[data-cy='comment-textarea']").type(commentBody);
 
     // Click submit
     cy.get("[data-cy='submit-comment']").click();
     cy.wait("@submitComment").then((data) => {
-      expect(data.request.body.name).to.eq("Test");
-      expect(data.request.body.email).to.eq("test@test.com");
-      expect(data.request.body.body).to.eq("TestBody");
+      expect(data.request.body.name).to.eq(commenterName);
+      expect(data.request.body.email).to.eq(commenterEmail);
+      expect(data.request.body.body).to.eq(commentBody);
     });
 
     // Comment success
@@ -137,6 +140,9 @@ describe("Render post details page successfully", () => {
     cy.tick(1000);
     // Comment success hidden
     cy.get("[data-cy='comment-success']").should("not.exist");
+
+    // Comment will be added to the comments
+    cy.get("[data-cy='comment']").should("have.length", '6');
   });
 
   it("should validate add comment", () => {
@@ -149,13 +155,13 @@ describe("Render post details page successfully", () => {
     cy.get("[data-cy='comment-error']").contains("Message input is required");
 
     // Show valid messages for email
-    cy.get("[data-cy='input-email']").type("test");
+    cy.get("[data-cy='input-email']").type(commenterName);
     cy.get("[data-cy='email-error']").contains("This email is unvalid");
 
     // Error message shoulf be hidden
-    cy.get("[data-cy='input-name']").type("Test");
-    cy.get("[data-cy='input-email']").type("test@test.com");
-    cy.get("[data-cy='comment-textarea']").type("TestBody");
+    cy.get("[data-cy='input-name']").type(commenterName);
+    cy.get("[data-cy='input-email']").type(commenterEmail);
+    cy.get("[data-cy='comment-textarea']").type(commentBody);
 
     cy.get("[data-cy='name-error']").should("not.exist");
     cy.get("[data-cy='email-error']").should("not.exist");

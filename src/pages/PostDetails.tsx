@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { addComment, getPost } from "../api/posts";
 import Details from "../components/Details";
 import {
+  IComment,
   ICommentContext,
   IFormTypes,
   IPostDetails,
@@ -38,11 +39,28 @@ const PostDetails: React.FC = () => {
     }
   }, [isSuccess]);
 
+  const addCommentHandler = (comment: IComment) => {
+    if (post) {
+      const postCopy = { ...post };
+      console.log(post, comment)
+      postCopy.comments = [comment, ...postCopy.comments];
+      setPost(postCopy);
+    }
+  };
+
   const onSubmitHandler = async (data: IFormTypes) => {
     try {
-      await addComment(+(id || 0), data);
+      const res: IComment = await addComment(+(id || 0), data);
+      // Show success message
       setIsSuccess(true);
+
+      // Reset the array
       reset();
+
+      // Push the comment to the comments section
+      // It should re-fetch getting post details request
+      // But I push the comment manually beacause it is a placeholder api
+      addCommentHandler(res);
     } catch (e) {
       console.log(e);
     }
