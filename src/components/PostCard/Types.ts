@@ -5,6 +5,10 @@ export interface IPostCard {
   body: string;
 }
 
+export interface IPostCardProps extends IPostCard {
+  userName: string;
+}
+
 export interface IUser {
   id: number;
   name: string;
