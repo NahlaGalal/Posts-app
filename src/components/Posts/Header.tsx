@@ -7,7 +7,7 @@ const PostsHeader: React.FC = () => {
     <header className="custom-container bg-lightViolet py-24 relative">
       <p
         data-cy="blog-tag"
-        className="[ text-sm font-medium] 
+        className="[ text-sm font-medium ] 
         [ py-1 px-3 ] 
         [ text-mainColor bg-lightViolet mix-blend-multiply ] 
         rounded-2xl w-max mx-auto"
@@ -18,7 +18,7 @@ const PostsHeader: React.FC = () => {
       {/* Heading of posts page */}
       <h1
         data-cy="main-header"
-        className="[ text-5xl font-semibold leading-[60px] tracking-[-2%] text-darkVoilet text-center ]
+        className="[ text-4xl sm:text-5xl font-semibold leading-[60px] text-darkVoilet text-center ]
         [ mt-4 mb-6 ]"
       >
         Resources and Insights
@@ -28,13 +28,13 @@ const PostsHeader: React.FC = () => {
       </h2>
 
       {/* Search input */}
-      <div className="relative w-max [ mx-auto mt-10 ]">
+      <div className="relative [ w-max max-w-full ] [ mx-auto mt-10 ]">
         <input
           type="search"
           placeholder="search"
           name="search"
           data-cy="search-input"
-          className="[ max-w-xs ]
+          className="[ max-w-full sm:max-w-xs ]
           [ pr-4 pl-11 py-3 ]
           [ text-greyColor rounded-lg ]"
         />
