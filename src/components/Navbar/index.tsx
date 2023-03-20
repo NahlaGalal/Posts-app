@@ -6,13 +6,13 @@ const Navbar: React.FC = () => {
   return (
     <header className="custom-container py-4 bg-lightViolet" data-cy="navbar">
       {/* This is a simple navbar  */}
-      <nav className="flex justify-between items-center">
+      <nav className="flex justify-between items-center flex-wrap gap-y-4">
         <Link to="/" className="text-darkVoilet text-2xl font-bold" data-cy="logo">
           Logo
         </Link>
 
         {/* Search input */}
-        <div className="relative">
+        <div className="relative max-w-full">
           <input
             type="search"
             placeholder="Search"

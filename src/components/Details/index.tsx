@@ -1,4 +1,6 @@
 import React from "react";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { MdLocationOn } from "react-icons/md";
 import Comments from "./Comments";
 import { IPostDetails } from "./Types";
 
@@ -9,13 +11,16 @@ const Details: React.FC<IPostDetails> = ({ body, comments, title, user }) => {
         {/* Post title */}
         <h1
           data-cy="post-title"
-          className="text-5xl leading-[60px] font-semibold text-blackColor mb-6"
+          className="text-3xl sm:text-5xl sm:leading-[60px] font-semibold text-blackColor mb-6"
         >
           {title}
         </h1>
 
         {/* Post body */}
-        <p data-cy="post-body" className="text-xl text-greyColor w-3/4 mx-auto">
+        <p
+          data-cy="post-body"
+          className="text-xl text-greyColor sm:w-3/4 mx-auto"
+        >
           {body}
         </p>
 
@@ -23,7 +28,7 @@ const Details: React.FC<IPostDetails> = ({ body, comments, title, user }) => {
         <section
           className="[ flex items-center gap-4 flex-wrap ]
         [ pt-6 border-t border-t-greyColor border-opacity-20 ]
-        w-3/4 mx-auto mt-12"
+        sm:w-3/4 mx-auto mt-12"
         >
           {/* Author avatar */}
           <span
@@ -37,19 +42,30 @@ const Details: React.FC<IPostDetails> = ({ body, comments, title, user }) => {
           </span>
 
           <div>
-            {/* User name and company */}
-            <p
+            {/* User name */}
+            <a
+              href={`/user/${user.id}`}
               data-cy="user-name"
               className="text-lg font-semibold text-blackColor"
             >
               {user.name}
-              <span className="text-base font-normal mx-1 text-greyColor">
-                from
-              </span>
+            </a>
+
+            {/* User company */}
+            <p
+              className="text-blackColor flex gap-1 items-center"
+              data-cy="user-company"
+            >
+              <MdLocationOn />
               {user.company.name}
             </p>
+
             {/* User phone */}
-            <p data-cy="user-phone" className="text-greyColor">
+            <p
+              data-cy="user-phone"
+              className="text-greyColor flex gap-1 items-center"
+            >
+              <BsFillTelephoneFill />
               {user.phone}
             </p>
           </div>

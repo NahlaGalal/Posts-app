@@ -42,9 +42,8 @@ describe("Render post details page successfully", () => {
       cy.get("[data-cy='post-body']").should("contain", body);
 
       // Check for user data
-      cy.get("[data-cy='user-name']").contains(
-        new RegExp(`${name}.*${companyName}`)
-      );
+      cy.get("[data-cy='user-name']").should("contain", name);
+      cy.get("[data-cy='user-company']").should("contain", companyName);
       cy.get("[data-cy='user-avatar']").should("contain", name[0]);
       cy.get("[data-cy='user-phone']").should("contain", phone);
 
