@@ -61,4 +61,34 @@ describe("Post card functionality", () => {
       cy.location("pathname", `/post/${post.id}`);
     });
   });
+
+  it("should navigate to user posts page correctly", () => {
+    cy.get("@postsFakeData").then((posts) => {
+      const [post] = posts;
+
+      // spying and response stubbing
+      // Simulate api request to get all posts
+      cy.intercept(
+        "GET",
+        "https://jsonplaceholder.typicode.com/posts",
+        posts
+      ).as("getPosts");
+
+      cy.get("@usersFakeData").then((users) => {
+        const user = users.find((user) => user.id === post.userId);
+
+        // spying and response stubbing
+        // Simulate api request to get all users
+        cy.intercept(
+          "GET",
+          "https://jsonplaceholder.typicode.com/users",
+          users
+        ).as("getUsers");
+
+        // Click on author name
+        cy.get("[data-cy='user-name']").first().click();
+        cy.location("pathname", `/user/${user.id}`);
+      });
+    });
+  });
 });
