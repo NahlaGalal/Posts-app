@@ -1,14 +1,14 @@
 import React from "react";
-import { IPostCardProps } from "./Types";
+import { IPostCard } from "./Types";
 import { BsArrowUpRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const PostCard: React.FC<IPostCardProps> = ({
+const PostCard: React.FC<IPostCard> = ({
   body,
   title,
   id,
-  userName,
   userId,
+  user: { name },
 }) => {
   return (
     <section
@@ -24,7 +24,7 @@ const PostCard: React.FC<IPostCardProps> = ({
         [ font-bold text-xl ]"
           data-cy="user-avatar"
         >
-          {userName[0]}
+          {name[0]}
         </span>
 
         {/* User name */}
@@ -33,7 +33,7 @@ const PostCard: React.FC<IPostCardProps> = ({
           className="text-sm text-blackColor font-medium"
           data-cy="user-name"
         >
-          {userName}
+          {name}
         </a>
 
         {/* Link to post */}

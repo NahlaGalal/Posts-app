@@ -2,17 +2,6 @@
 
 describe("Post card functionality", () => {
   beforeEach(() => {
-    cy.fixture("users")
-      .as("usersFakeData")
-      .then((users) => {
-        // spying and response stubbing
-        // Simulate api request to get all users
-        cy.intercept(
-          "GET",
-          "https://jsonplaceholder.typicode.com/users",
-          users
-        );
-      });
     cy.fixture("posts")
       .as("postsFakeData")
       .then((posts) => {
@@ -20,7 +9,7 @@ describe("Post card functionality", () => {
         // Simulate api request to get all posts
         cy.intercept(
           "GET",
-          "https://jsonplaceholder.typicode.com/posts",
+          "https://jsonplaceholder.typicode.com/posts?_expand=user",
           posts
         );
       });
@@ -37,15 +26,11 @@ describe("Post card functionality", () => {
       // Check for post body
       cy.get("[data-cy='post-body']").first().contains(post.body.slice(0, 10));
 
-      cy.get("@usersFakeData").then((users) => {
-        const user = users.find((user) => user.id === post.userId);
+      // Check for user name
+      cy.get("[data-cy='user-name']").first().contains(post.user.name);
 
-        // Check for user name
-        cy.get("[data-cy='user-name']").first().contains(user.name);
-
-        // Check for user avatar
-        cy.get("[data-cy='user-avatar']").first().contains(user.name[0]);
-      });
+      // Check for user avatar
+      cy.get("[data-cy='user-avatar']").first().contains(post.user.name[0]);
     });
   });
 
@@ -63,13 +48,9 @@ describe("Post card functionality", () => {
     cy.get("@postsFakeData").then((posts) => {
       const [post] = posts;
 
-      cy.get("@usersFakeData").then((users) => {
-        const user = users.find((user) => user.id === post.userId);
-
-        // Click on author name
-        cy.get("[data-cy='user-name']").first().click();
-        cy.location("pathname", `/user/${user.id}`);
-      });
+      // Click on author name
+      cy.get("[data-cy='user-name']").first().click();
+      cy.location("pathname", `/user/${post.userId}`);
     });
   });
 });

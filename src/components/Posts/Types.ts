@@ -1,6 +1,5 @@
-import { IPostCard, IUser } from "../PostCard/Types";
+import { IPostCard } from "../PostCard/Types";
 
 export interface ICardsContainerProps {
   cards: IPostCard[];
-  users: IUser[];
 }

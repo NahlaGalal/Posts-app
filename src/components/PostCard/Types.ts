@@ -1,15 +1,4 @@
-export interface IPostCard {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-}
-
-export interface IPostCardProps extends IPostCard {
-  userName: string;
-}
-
-export interface IUser {
+interface IUser {
   id: number;
   name: string;
   username: string;
@@ -31,4 +20,12 @@ export interface IUser {
     catchPhrase: string;
     bs: string;
   };
+}
+
+export interface IPostCard {
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
+  user: IUser;
 }
