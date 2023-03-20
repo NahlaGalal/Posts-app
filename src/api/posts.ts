@@ -11,3 +11,8 @@ export const getPost = async (id: number) => {
 
   return data;
 };
+
+export const addComment = async (id: number, body: any) => {
+  const {data} = await axios.post(`/posts/${id}/comments`, body);
+  console.log(data)
+}

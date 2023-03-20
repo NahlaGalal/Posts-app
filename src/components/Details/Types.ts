@@ -1,3 +1,4 @@
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { IPostCard } from "../PostCard/Types";
 
 interface IComment {
@@ -14,4 +15,17 @@ export interface IPostDetails extends IPostCard {
 
 export interface ICommentsProps {
   comments: IComment[];
+}
+
+export interface IFormTypes {
+  body: string;
+  name: string;
+  email: string;
+}
+
+export interface ICommentContext {
+  onSubmit: (data: any) => Promise<void>;
+  register: UseFormRegister<IFormTypes> | undefined;
+  errors: FieldErrors<IFormTypes>;
+  isSuccess: boolean;
 }
