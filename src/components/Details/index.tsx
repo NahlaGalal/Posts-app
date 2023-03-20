@@ -4,15 +4,15 @@ import { IPostDetails } from "./Types";
 
 const Details: React.FC<IPostDetails> = ({ body, comments, title, user }) => {
   return (
-    <main className="mt-24">
+    <main className="my-24">
       <article className="custom-container">
         {/* Post title */}
-        <h2
+        <h1
           data-cy="post-title"
           className="text-5xl leading-[60px] font-semibold text-blackColor mb-6"
         >
           {title}
-        </h2>
+        </h1>
 
         {/* Post body */}
         <p data-cy="post-body" className="text-xl text-greyColor w-3/4 mx-auto">
@@ -43,9 +43,9 @@ const Details: React.FC<IPostDetails> = ({ body, comments, title, user }) => {
               className="text-lg font-semibold text-blackColor"
             >
               {user.name}
-                <span className="text-base font-normal mx-1 text-greyColor">
-                  from
-                </span>
+              <span className="text-base font-normal mx-1 text-greyColor">
+                from
+              </span>
               {user.company.name}
             </p>
             {/* User phone */}
@@ -56,7 +56,7 @@ const Details: React.FC<IPostDetails> = ({ body, comments, title, user }) => {
         </section>
 
         {/* Comments section */}
-        <Comments />
+        <Comments comments={comments} />
       </article>
     </main>
   );

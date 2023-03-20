@@ -11,3 +11,7 @@ interface IComment {
 export interface IPostDetails extends IPostCard {
   comments: IComment[];
 }
+
+export interface ICommentsProps {
+  comments: IComment[];
+}
