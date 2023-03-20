@@ -13,6 +13,9 @@ describe("Render post details page successfully", () => {
           { body: post }
         );
       });
+  });
+
+  beforeEach(() => {
     cy.visit("/post/1");
   });
 
@@ -26,10 +29,14 @@ describe("Render post details page successfully", () => {
           phone,
           company: { name: companyName },
         },
+        comments,
       } = post;
 
       // Check for title
-      cy.get("[data-cy='post-title']").contains(title);
+      cy.get("[data-cy='post-title']")
+        .contains(title)
+        .should("have.prop", "tagName")
+        .should("eq", "H1");
 
       // Check for body
       cy.get("[data-cy='post-body']").contains(body);
@@ -40,6 +47,40 @@ describe("Render post details page successfully", () => {
       );
       cy.get("[data-cy='user-avatar']").contains(name[0]);
       cy.get("[data-cy='user-phone']").contains(phone);
+
+      // Check for comments
+      // Comments header
+      cy.get("[data-cy='comments-header']").contains(
+        `Top Comments (${comments.length})`
+      );
+
+      // Comments list
+      cy.get("[data-cy='comment']").should("have.length", 3);
+      cy.get("[data-cy='commenter-avatar']")
+        .first()
+        .contains(comments[0].name[0].toLocaleUpperCase());
+      cy.get("[data-cy='commenter-name']").first().contains(comments[0].name);
+      cy.get("[data-cy='commenter-email']").first().contains(comments[0].email);
+      cy.get("[data-cy='comment-body']").first().contains(comments[0].body);
     });
+  });
+
+  it("should toggle textarea height", () => {
+    // Default state
+    cy.get("[data-cy='comment-textarea']").should("have.css", "height", "64px");
+    cy.get("[data-cy=submit-comment]").should("not.exist");
+    cy.get("[data-cy=cancel-comment]").should("not.exist");
+    
+    // Focus on textarea => It will be expanded and buttons will be shown
+    cy.get("[data-cy='comment-textarea']").focus();
+    cy.get("[data-cy='comment-textarea']").should("have.css", "height", "128px");
+    cy.get("[data-cy=submit-comment]").contains("Submit").should("exist");
+    cy.get("[data-cy=cancel-comment]").contains("Cancel").should("exist");
+    
+    // Click on cancel button => Textarea will be collapsed and buttons will be hidden
+    cy.get("[data-cy='cancel-comment']").click();
+    cy.get("[data-cy='comment-textarea']").should("have.css", "height", "64px");
+    cy.get("[data-cy=submit-comment]").should("not.exist");
+    cy.get("[data-cy=cancel-comment]").should("not.exist");
   });
 });
