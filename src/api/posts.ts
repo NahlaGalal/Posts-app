@@ -5,3 +5,9 @@ export const getPosts = async () => {
 
   return data;
 };
+
+export const getPost = async (id: number) => {
+  const { data } = await axios.get(`/posts/${id}?_embed=comments&_expand=user`);
+
+  return data;
+};
