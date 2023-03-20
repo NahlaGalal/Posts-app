@@ -1,7 +1,12 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const PostDetails: React.FC = () => {
-  return <div>PostDetails</div>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 };
 
 export default PostDetails;
