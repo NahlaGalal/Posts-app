@@ -21,16 +21,20 @@ describe("Post card functionality", () => {
       const [post] = posts;
 
       // Check for post title
-      cy.get("[data-cy='post-title']").first().contains(post.title);
+      cy.get("[data-cy='post-title']").first().should("contain", post.title);
 
       // Check for post body
-      cy.get("[data-cy='post-body']").first().contains(post.body.slice(0, 10));
+      cy.get("[data-cy='post-body']")
+        .first()
+        .should("contain", post.body.slice(0, 10));
 
       // Check for user name
-      cy.get("[data-cy='user-name']").first().contains(post.user.name);
+      cy.get("[data-cy='user-name']").first().should("contain", post.user.name);
 
       // Check for user avatar
-      cy.get("[data-cy='user-avatar']").first().contains(post.user.name[0]);
+      cy.get("[data-cy='user-avatar']")
+        .first()
+        .should("contain", post.user.name[0]);
     });
   });
 
