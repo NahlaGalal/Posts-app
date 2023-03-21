@@ -10,6 +10,7 @@ import {
   IPostDetails,
 } from "../components/Details/Types";
 import Navbar from "../components/Navbar";
+import Loading from "../components/Loading";
 
 // Use context to pass onSubmit function to the third level child
 // without passing the function between all components
@@ -30,6 +31,7 @@ const PostDetails: React.FC = () => {
     reset,
   } = useForm<IFormTypes>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (isSuccess) {
@@ -42,13 +44,13 @@ const PostDetails: React.FC = () => {
   const addCommentHandler = (comment: IComment) => {
     if (post) {
       const postCopy = { ...post };
-      console.log(post, comment)
       postCopy.comments = [comment, ...postCopy.comments];
       setPost(postCopy);
     }
   };
 
   const onSubmitHandler = async (data: IFormTypes) => {
+    setLoading(true);
     try {
       const res: IComment = await addComment(+(id || 0), data);
       // Show success message
@@ -61,16 +63,23 @@ const PostDetails: React.FC = () => {
       // It should re-fetch getting post details request
       // But I push the comment manually beacause it is a placeholder api
       addCommentHandler(res);
+
+      // Stop loading
+      setLoading(false);
     } catch (e) {
       console.log(e);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     const getPostDetailsHandler = async () => {
+      setLoading(true);
+
       const data = await getPost(+(id || 0));
 
       setPost(data);
+      setLoading(false);
     };
 
     getPostDetailsHandler();
@@ -86,7 +95,7 @@ const PostDetails: React.FC = () => {
       }}
     >
       <Navbar />
-      {post ? <Details {...post} /> : <p>Loading...</p>}
+      {post && !loading ? <Details {...post} /> : <Loading />}
     </CommentContext.Provider>
   );
 };

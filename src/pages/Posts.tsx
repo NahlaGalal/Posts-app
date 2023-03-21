@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "../api/posts";
+import Loading from "../components/Loading";
 import { IPostCard } from "../components/PostCard/Types";
 import CardsContainer from "../components/Posts/CardsContainer";
 import PostsHeader from "../components/Posts/Header";
 
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<IPostCard[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getPostsHandler = async () => {
+      setLoading(true);
       const postsRes = await getPosts();
 
+      setLoading(false);
       setPosts(postsRes);
     };
 
@@ -20,7 +24,7 @@ const Posts: React.FC = () => {
   return (
     <>
       <PostsHeader />
-      <CardsContainer cards={posts} />
+      {loading ? <Loading /> : <CardsContainer cards={posts} />}
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserData } from "../api/users";
+import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 import { IPostCard } from "../components/PostCard/Types";
 import CardsContainer from "../components/Posts/CardsContainer";
@@ -37,7 +38,7 @@ const UserPosts: React.FC = () => {
           <CardsContainer cards={getCards()} />
         </main>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </>
   );
