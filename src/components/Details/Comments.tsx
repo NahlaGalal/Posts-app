@@ -7,7 +7,7 @@ const Comments: React.FC<ICommentsProps> = ({ comments }) => {
   return (
     <section className="pt-6 mt-10 border-t border-t-greyColor border-opacity-20">
       <h2
-        className="text-4xl font-semibold text-blackColor"
+        className="text-2xl font-semibold text-blackColor"
         data-cy="comments-header"
       >
         Top Comments ({comments.length})
