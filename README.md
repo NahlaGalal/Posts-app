@@ -29,5 +29,8 @@ You can found the app in [https://posts-app-dusky.vercel.app/](https://posts-app
 
 ### Screenshots:
 - Posts page:
+![image](https://user-images.githubusercontent.com/33041250/226511918-0f2e9e54-279e-4074-9183-dcacb2cca4df.png)
 - Post details page:
+![image](https://user-images.githubusercontent.com/33041250/226511945-95f8652d-bedd-4943-809b-a957046b3656.png)
 - User posts page:
+![image](https://user-images.githubusercontent.com/33041250/226511969-1661c1d8-8482-45e5-af0f-7643b5d89c67.png)
