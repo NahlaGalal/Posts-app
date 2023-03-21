@@ -44,12 +44,13 @@ const PostCard: React.FC<IPostCard> = ({
       </div>
 
       {/* Blog name */}
-      <p
+      <Link
+        to={`/post/${id}`}
         className="text-2xl font-semibold text-blackColor my-3 strict-lines strict-lines--one"
         data-cy="post-title"
       >
         {title}
-      </p>
+      </Link>
 
       {/* Blog small description */}
       <p className="text-greyColor strict-lines" data-cy="post-body">
