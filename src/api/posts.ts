@@ -1,7 +1,9 @@
 import axios from "../utils/axiosInterceptors";
 
-export const getPosts = async () => {
-  const { data } = await axios.get("/posts?_expand=user");
+export const getPosts = async (page: number) => {
+  const { data } = await axios.get(
+    `/posts?_expand=user&_limit=20&_page=${page}`
+  );
 
   return data;
 };
