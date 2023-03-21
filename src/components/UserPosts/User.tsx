@@ -12,7 +12,7 @@ const User: React.FC<IUserPosts> = ({
   username,
 }) => {
   return (
-    <section className="custom-container my-24 relative">
+    <section className="custom-container mb-16 relative">
       <div
         className="[ bg-lightViolet rounded-xl ]
     [ border border-greyColor border-opacity-25 ]

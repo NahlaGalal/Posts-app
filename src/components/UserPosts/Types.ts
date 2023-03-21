@@ -28,5 +28,5 @@ export interface IUserPosts extends IUser {
     userId: number;
     title: string;
     body: string;
-  };
+  }[];
 }
