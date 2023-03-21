@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
-import ErrorImg from "../../../public/error-404.svg";
+import ErrorImg from "../../images/error-404.svg";
 import { Link } from "react-router-dom";
 
 const Error404: React.FC = () => {

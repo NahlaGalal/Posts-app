@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
-import ErrorImg from "../../../public/err.svg";
+import ErrorImg from "../../images/err.svg";
 import { Link } from "react-router-dom";
 
 const Error: React.FC = () => {
