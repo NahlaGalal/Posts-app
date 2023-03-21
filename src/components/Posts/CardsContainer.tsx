@@ -35,6 +35,7 @@ const CardsContainer: React.FC<ICardsContainerProps> = ({
         [ border border-mainColor ]
         rounded-lg mx-auto w-max block"
             onClick={onLoadMoreHandler}
+            data-cy="load-more"
           >
             Load more
           </button>
