@@ -1,7 +1,7 @@
 import axios from "../utils/axiosInterceptors";
 
-export const getUsersData = async () => {
-  const { data } = await axios.get("/users");
+export const getUserData = async (id: string) => {
+  const { data } = await axios.get(`/users/${id}?_embed=posts`);
 
   return data;
 };
