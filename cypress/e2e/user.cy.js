@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe("User posts page renders successfully", () => {
-  before(() => {
+  beforeEach(() => {
     cy.fixture("user")
       .as("userFakeData")
       .then((user) => {
@@ -13,11 +13,10 @@ describe("User posts page renders successfully", () => {
           { body: user }
         );
       });
-  });
+    cy.visit("/user/1");
+  })
 
   it("should be render user details correctly", () => {
-    cy.visit("/user/1");
-
     cy.get("@userFakeData").then((user) => {
       const { website, company, email, name, phone, username } = user;
 
@@ -59,5 +58,15 @@ describe("User posts page renders successfully", () => {
         `${company.bs} @ ${company.name}`
       );
     });
+  });
+
+  it('should be render user posts correctly', () => {
+    cy.get("@userFakeData").then((user) => {
+      // Number of post cards == number of posts in user data
+      cy.get("[data-cy='post-card']").should("have.length", user.posts.length);
+
+      // All posts created by the same user
+      cy.get("[data-cy='user-name']").should("contain", user.name);
+    })
   });
 });

@@ -14,6 +14,7 @@ const PostCard: React.FC<IPostCard> = ({
     <section
       className="[ px-6 pt-6 pb-8 ]
   [ bg-white shadow-cardShadow ]"
+      data-cy="post-card"
     >
       <div className="flex gap-3 items-center flex-wrap">
         {/* User avatar with the first letter of his name */}
