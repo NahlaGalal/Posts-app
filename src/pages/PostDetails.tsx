@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { addComment, getPost } from "../api/posts";
 import Details from "../components/Details";
@@ -23,6 +23,7 @@ export const CommentContext = createContext<ICommentContext>({
 
 const PostDetails: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [post, setPost] = useState<IPostDetails>();
   const {
     register,
@@ -67,7 +68,7 @@ const PostDetails: React.FC = () => {
       // Stop loading
       setLoading(false);
     } catch (e) {
-      console.log(e);
+      navigate("/err")
       setLoading(false);
     }
   };
@@ -75,11 +76,16 @@ const PostDetails: React.FC = () => {
   useEffect(() => {
     const getPostDetailsHandler = async () => {
       setLoading(true);
-
-      const data = await getPost(+(id || 0));
-
-      setPost(data);
-      setLoading(false);
+      try {
+        const data = await getPost(+(id || 0));
+        setPost(data);
+        setLoading(false);
+      } catch (err: any) {
+        if(err.response.status === 404) {
+          navigate("/404")
+        } 
+        setLoading(false);
+      }
     };
 
     getPostDetailsHandler();

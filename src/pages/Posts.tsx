@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getPosts } from "../api/posts";
 import Loading from "../components/Loading";
 import { IPostCard } from "../components/PostCard/Types";
@@ -6,26 +7,32 @@ import CardsContainer from "../components/Posts/CardsContainer";
 import PostsHeader from "../components/Posts/Header";
 
 const Posts: React.FC = () => {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<IPostCard[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [isLoadMore, setIsLoadMore] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
-  const [searchQuery, setSearchQuery] = useState<string>("")
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const getPostsHandler = async (val?: string) => {
     const currentPage = val === undefined ? page : 0;
     const currentVal = val === undefined ? searchQuery : val;
 
     setLoading(true);
-    const postsRes: IPostCard[] = await getPosts(currentPage + 1, currentVal);
+    try {
+      const postsRes: IPostCard[] = await getPosts(currentPage + 1, currentVal);
 
-    setLoading(false);
-    setPage(currentPage + 1);
-    setIsLoadMore(postsRes.length === 20);
+      setLoading(false);
+      setPage(currentPage + 1);
+      setIsLoadMore(postsRes.length === 20);
 
-    // In case of search replace cards with the response
-    // In other cases append cards
-    setPosts(val !== undefined ? postsRes : [...posts, ...postsRes]);
+      // In case of search replace cards with the response
+      // In other cases append cards
+      setPosts(val !== undefined ? postsRes : [...posts, ...postsRes]);
+    } catch (err) {
+      navigate("/err");
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -38,7 +45,7 @@ const Posts: React.FC = () => {
 
   const onSearchHandler = (val: string) => {
     getPostsHandler(val);
-    setSearchQuery(val)
+    setSearchQuery(val);
   };
 
   const debounce = (func: (_: string) => void) => {

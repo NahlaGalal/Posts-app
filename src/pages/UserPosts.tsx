@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getUserData } from "../api/users";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
@@ -10,13 +10,17 @@ import User from "../components/UserPosts/User";
 
 const UserPosts: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState<IUserPosts>();
 
   useEffect(() => {
     const getUserHandler = async () => {
-      const res = await getUserData(id || "");
-
-      setData(res);
+      try {
+        const res = await getUserData(id || "");
+        setData(res);
+      } catch(err) {
+        navigate("/404")
+      }
     };
 
     getUserHandler();
