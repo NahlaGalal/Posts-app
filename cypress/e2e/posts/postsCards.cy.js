@@ -9,13 +9,13 @@ describe("Post cards renders successfully", () => {
         // Simulate api request to get all posts
         cy.intercept(
           "GET",
-          "https://jsonplaceholder.typicode.com/posts?_expand=user&_limit=20&_page=1",
+          "https://jsonplaceholder.typicode.com/posts?_expand=user&_limit=20&_page=1&q=",
           posts.slice(0, 20)
         );
 
         cy.intercept(
           "GET",
-          "https://jsonplaceholder.typicode.com/posts?_expand=user&_limit=20&_page=2",
+          "https://jsonplaceholder.typicode.com/posts?_expand=user&_limit=20&_page=2&q=",
           posts.slice(20, 24)
         );
       });
@@ -23,7 +23,7 @@ describe("Post cards renders successfully", () => {
   });
 
   it("should be render user posts correctly", () => {
-    cy.get("@postsFakeData").then((posts) => {
+    cy.get("@postsFakeData").then(() => {
       // Number of post cards is maximum 20
       cy.get("[data-cy='post-card']").should("have.length", 20);
 

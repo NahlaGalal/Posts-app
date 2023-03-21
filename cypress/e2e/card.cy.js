@@ -9,7 +9,7 @@ describe("Post card functionality", () => {
         // Simulate api request to get all posts
         cy.intercept(
           "GET",
-          "https://jsonplaceholder.typicode.com/posts?_expand=user&_limit=20&_page=1",
+          "https://jsonplaceholder.typicode.com/posts?_expand=user&_limit=20&_page=1&q=",
           posts
         );
       });
