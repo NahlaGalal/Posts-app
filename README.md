@@ -4,6 +4,10 @@ This is a simple blog app that uses [http://jsonplaceholder.typicode.com/](http:
 
 You can found the app in [https://posts-app-dusky.vercel.app/](https://posts-app-dusky.vercel.app/)
 
+The design of the pages inspired from:
+[https://dev.to/](https://dev.to/)
+[https://www.figcomponents.com/?id=628da697447e20d4bf9c6a8d](https://www.figcomponents.com/?id=628da697447e20d4bf9c6a8d)
+
 ### Pages:
 - Page to list all posts
 - Page to show post details
