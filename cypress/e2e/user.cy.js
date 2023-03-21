@@ -12,6 +12,14 @@ describe("User posts page renders successfully", () => {
           "https://jsonplaceholder.typicode.com/users/1?_embed=posts",
           { body: user }
         );
+
+        // spying and response stubbing
+        // Simulate api request to get post details
+        cy.intercept(
+          "GET",
+          "https://jsonplaceholder.typicode.com/users/500?_embed=posts",
+          { statusCode: 404 }
+        );
       });
     cy.visit("/user/1");
   })
@@ -68,5 +76,11 @@ describe("User posts page renders successfully", () => {
       // All posts created by the same user
       cy.get("[data-cy='user-name']").should("contain", user.name);
     })
+  });
+
+  it("should navigate to error page if user id is wrong", () => {
+    cy.visit("/user/500");
+
+    cy.location("pathname", "404")
   });
 });

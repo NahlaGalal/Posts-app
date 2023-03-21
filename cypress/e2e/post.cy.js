@@ -5,7 +5,10 @@ const commenterEmail = "test@test.com";
 const commentBody = "Test Body";
 
 describe("Render post details page successfully", () => {
-  before(() => {
+  beforeEach(() => {
+    cy.visit("/post/1");
+    cy.clock();
+
     cy.fixture("postDetails")
       .as("postFakeData")
       .then((post) => {
@@ -17,11 +20,6 @@ describe("Render post details page successfully", () => {
           { body: post }
         );
       });
-  });
-
-  beforeEach(() => {
-    cy.visit("/post/1");
-    cy.clock();
 
     // spying and response stubbing
     // Simulate api request to post comment
@@ -38,6 +36,14 @@ describe("Render post details page successfully", () => {
         },
       }
     ).as("submitComment");
+
+    // spying and response stubbing
+    // Simulate api request to get post details
+    cy.intercept(
+      "GET",
+      "https://jsonplaceholder.typicode.com/posts/500?_embed=comments&_expand=user",
+      { statusCode: 404 }
+    )
   });
 
   it("should render the UI successfully", () => {
@@ -142,7 +148,7 @@ describe("Render post details page successfully", () => {
     cy.get("[data-cy='comment-success']").should("not.exist");
 
     // Comment will be added to the comments
-    cy.get("[data-cy='comment']").should("have.length", '6');
+    cy.get("[data-cy='comment']").should("have.length", '4');
   });
 
   it("should validate add comment", () => {
@@ -167,4 +173,11 @@ describe("Render post details page successfully", () => {
     cy.get("[data-cy='email-error']").should("not.exist");
     cy.get("[data-cy='comment-error']").should("not.exist");
   });
+
+  it("should navigate to error page if post id is wrong", () => {
+    cy.visit("/post/500");
+
+    // Check navigation to 404
+    cy.location("pathname", "404")
+  })
 });

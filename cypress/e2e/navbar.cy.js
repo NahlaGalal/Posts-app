@@ -22,4 +22,10 @@ describe("Navbar rendered successfully", () => {
     cy.get("[data-cy='logo']").click();
     cy.location("pathname", "/");
   });
+
+  it("should navigate to error page if route is wrong", () => {
+    cy.visit("/abs");
+
+    cy.location("pathname", "404")
+  });
 });
