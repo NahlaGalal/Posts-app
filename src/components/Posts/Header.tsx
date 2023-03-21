@@ -1,8 +1,9 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
+import { IPostsHeaderProps } from "./Types";
 import bgPattern from "/bg-pattern.svg";
 
-const PostsHeader: React.FC = () => {
+const PostsHeader: React.FC<IPostsHeaderProps> = ({ onSearchHandler }) => {
   return (
     <header className="custom-container bg-lightViolet py-24 relative">
       <p
@@ -37,6 +38,7 @@ const PostsHeader: React.FC = () => {
           className="[ max-w-full sm:max-w-xs ]
           [ pr-4 pl-11 py-3 ]
           [ text-greyColor rounded-lg ]"
+          onChange={(e) => onSearchHandler(e.currentTarget.value)}
         />
         <span className="absolute top-3 left-4">
           <FiSearch className="text-greyColor w-5 h-5" />

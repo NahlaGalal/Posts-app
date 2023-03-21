@@ -5,3 +5,7 @@ export interface ICardsContainerProps {
   isLoadMore?: boolean;
   onLoadMoreHandler?: () => void;
 }
+
+export interface IPostsHeaderProps {
+  onSearchHandler: (val: string) => void;
+}
