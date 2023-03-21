@@ -4,12 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mainColor: "#6941C6",
-        lightViolet: "#F9F5FF",
-        darkVoilet: "#42307D",
-        blackColor: "#101828",
-        greyColor: "#667085",
-        errorColor: "#B42318",
+        blueColor: "#174bd0",
+        lightGrey: "#f2f2f2",
+        redColor: "#b12626",
+        blackColor: "#000",
+        greyColor: "#999",
       },
       fontFamily: {
         inter: "Inter, sans-serif",

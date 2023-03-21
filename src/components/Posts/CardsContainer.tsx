@@ -31,8 +31,8 @@ const CardsContainer: React.FC<ICardsContainerProps> = ({
         {isLoadMore && (
           <button
             className="mt-10 [ py-2.5 px-4 ] 
-        [ bg-mainColor text-white text-sm font-semibold ]
-        [ border border-mainColor ]
+        [ bg-blueColor text-white text-sm font-semibold ]
+        [ border border-blueColor ]
         rounded-lg mx-auto w-max block"
             onClick={onLoadMoreHandler}
             data-cy="load-more"

@@ -34,7 +34,7 @@ const Details: React.FC<IPostDetails> = ({ body, comments, title, user }) => {
           <span
             className="[ flex justify-center items-center ]
                 [ w-14 h-14 ] 
-                [ rounded-full bg-darkVoilet text-white ]
+                [ rounded-full bg-redColor text-white ]
                 [ font-bold text-xl ]"
             data-cy="user-avatar"
           >

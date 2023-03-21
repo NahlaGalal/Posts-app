@@ -29,7 +29,7 @@ const AddCommentUI = () => {
               {/* Name input error */}
               {errors.name && (
                 <p
-                  className="text-xs flex gap-1 items-center mt-1 text-errorColor"
+                  className="text-xs flex gap-1 items-center mt-1 text-redColor"
                   data-cy="name-error"
                 >
                   <AiFillWarning />
@@ -59,7 +59,7 @@ const AddCommentUI = () => {
               {/* Email input error */}
               {errors.email && (
                 <p
-                  className="text-xs flex gap-1 items-center mt-1 text-errorColor"
+                  className="text-xs flex gap-1 items-center mt-1 text-redColor"
                   data-cy="email-error"
                 >
                   <AiFillWarning />
@@ -86,7 +86,7 @@ const AddCommentUI = () => {
           {/* Comment input error */}
           {errors.body && (
             <p
-              className="text-xs flex gap-1 items-center mt-1 text-errorColor"
+              className="text-xs flex gap-1 items-center mt-1 text-redColor"
               data-cy="comment-error"
             >
               <AiFillWarning />
@@ -99,7 +99,7 @@ const AddCommentUI = () => {
       {isSuccess && (
         <p
           data-cy="comment-success"
-          className="text-sm flex items-center gap-1 text-darkVoilet mt-2"
+          className="text-sm flex items-center gap-1 text-redColor mt-2"
         >
           <AiFillCheckCircle />
           Comment added successfully
@@ -111,8 +111,8 @@ const AddCommentUI = () => {
           <button
             type="submit"
             className="[ py-2.5 px-4 ] 
-        [ bg-mainColor text-white text-sm font-semibold ]
-        [ border border-mainColor ]
+        [ bg-blueColor text-white text-sm font-semibold ]
+        [ border border-blueColor ]
         rounded-lg"
             data-cy="submit-comment"
           >

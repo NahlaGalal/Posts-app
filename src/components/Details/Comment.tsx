@@ -8,7 +8,7 @@ const Comment: React.FC<IComment> = ({ body, email, id, name }) => {
       <span
         className="[ flex justify-center items-center ]
                 [ w-10 h-10 mt-4 ] 
-                [ rounded-full bg-darkVoilet text-white ]
+                [ rounded-full bg-redColor text-white ]
                 [ font-bold text-xl ]"
         data-cy="commenter-avatar"
       >
@@ -20,7 +20,7 @@ const Comment: React.FC<IComment> = ({ body, email, id, name }) => {
             flex-1 p-4"
       >
         {/* Commenter name */}
-        <p className="text-mainColor text-lg" data-cy="commenter-name">
+        <p className="text-blueColor text-lg" data-cy="commenter-name">
           {name}
         </p>
 

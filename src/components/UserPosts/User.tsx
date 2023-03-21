@@ -14,7 +14,7 @@ const User: React.FC<IUserPosts> = ({
   return (
     <section className="custom-container mb-16 relative">
       <div
-        className="[ bg-lightViolet rounded-xl ]
+        className="[ bg-lightGrey rounded-xl ]
     [ border border-greyColor border-opacity-25 ]
     [ text-center p-4 text-blackColor ]"
       >
@@ -22,7 +22,7 @@ const User: React.FC<IUserPosts> = ({
         <span
           className="[ flex justify-center items-center ]
                 [ w-24 h-24 ] 
-                [ rounded-full bg-darkVoilet text-white ]
+                [ rounded-full bg-redColor text-white ]
                 [ font-bold text-xl ]
                 [ absolute -top-12 left-1/2 -translate-x-1/2 ]"
           data-cy="user-avatar"
@@ -32,7 +32,7 @@ const User: React.FC<IUserPosts> = ({
 
         {/* User name */}
         <h2
-          className="mt-12 text-2xl font-semibold text-darkVoilet"
+          className="mt-12 text-2xl font-semibold text-redColor"
           data-cy="user-name"
         >
           {name}
@@ -40,7 +40,7 @@ const User: React.FC<IUserPosts> = ({
         <p
           className="[ text-sm font-medium ] 
         [ py-1 px-3 ] 
-        [ text-mainColor bg-lightViolet mix-blend-multiply ] 
+        [ text-blueColor bg-lightGrey mix-blend-multiply ] 
         rounded-2xl w-max mx-auto"
           data-cy="user-username"
         >

@@ -21,7 +21,7 @@ const PostCard: React.FC<IPostCard> = ({
         <span
           className="[ flex justify-center items-center ]
         [ w-10 h-10 ] 
-        [ rounded-full bg-darkVoilet text-white ]
+        [ rounded-full bg-redColor text-white ]
         [ font-bold text-xl ]"
           data-cy="user-avatar"
         >

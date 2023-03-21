@@ -5,12 +5,12 @@ import bgPattern from "/bg-pattern.svg";
 
 const PostsHeader: React.FC<IPostsHeaderProps> = ({ onSearchHandler }) => {
   return (
-    <header className="custom-container bg-lightViolet py-24 relative">
+    <header className="custom-container bg-lightGrey py-24 relative">
       <p
         data-cy="blog-tag"
         className="[ text-sm font-medium ] 
         [ py-1 px-3 ] 
-        [ text-mainColor bg-lightViolet mix-blend-multiply ] 
+        [ text-redColor bg-lightGrey mix-blend-multiply ] 
         rounded-2xl w-max mx-auto"
       >
         Our blog
@@ -19,12 +19,12 @@ const PostsHeader: React.FC<IPostsHeaderProps> = ({ onSearchHandler }) => {
       {/* Heading of posts page */}
       <h1
         data-cy="main-header"
-        className="[ text-4xl sm:text-5xl font-semibold leading-[60px] text-darkVoilet text-center ]
+        className="[ text-4xl sm:text-5xl font-semibold leading-[60px] text-redColor text-center ]
         [ mt-4 mb-6 ]"
       >
         Resources and Insights
       </h1>
-      <h2 data-cy="sub-header" className="text-xl text-mainColor text-center">
+      <h2 data-cy="sub-header" className="text-xl text-blueColor text-center">
         The latest industry news, interviews, technologies, and resources.
       </h2>
 
